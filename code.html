@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Kenny Ntozakhe</title>
+    <title>PALINDROME: A Coding Project By Kenny Ntozakhe</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,7 +12,7 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/site.css">
-    <link rel="icon" type="img/png" href="/img/icon white.png">
+    <link rel="icon" type="img/png" href="/img/images (1).png">
     <link rel="stylesheet" href="/css/prism.css">
 </head>
 
@@ -20,8 +20,8 @@
     <!-- Nav Section-->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="/img/favicon-32x32.png" alt="logo" class="d-inline-block"
-                    width="30" height="24"> Kenny Ntozakhe</a>
+            <a class="navbar-brand" href="index.html"><img src="/img/images (1).png" alt="logo" class="d-inline-block"
+                    width="30" height="24"> Palindrome</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#" id="effect">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/Ntozakhe/Palinfrome"
+                            id="effect">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="#" id="effect">About</a>
@@ -52,21 +53,87 @@
     <!-- Main Section-->
     <main class="flex-shrink-0">
         <div class="container mt-5 p-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for HONDERD</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for PALINDROME</h2>
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            function helloWorld(){
-                                alert("Hello World");
-                            }
+                            
+//get our user input
+function getValue(){
+
+    //make sure the alert is invisible.
+    document.getElementById("alertID").classList.add("invisible");
+    
+    //get user string from the page
+    let userString = document.getElementById("userInput").value;
+
+    //check for a palindrome
+    let returnObj = checkForPalindrome(userString);
+  
+    //display our message to the screen.
+    displayMessage(returnObj);
+}
+
+// check if palindrome
+function checkForPalindrome(userString){
+    
+    //convert to lower case 
+    userString = userString.toLowerCase();
+    
+    //Remove special charactors.
+    let regex = /[^a-z0-9]/gi;
+    userString = userString.replace(regex,"");
+
+    //reverse userString
+
+    let revString = [];
+    let returnObj = {};
+
+    for (let index = userString.length -1; index >= 0; index--) {
+        revString += userString[index];        
+    }
+
+    //now check to see if its a palindrome
+    if(revString == userString){
+        returnObj.msg = "Well done! You've entered apalindrome!"
+    }
+    else{
+        returnObj.msg = "Sorry! You did not enter a Palindrome!"
+    }
+
+    returnObj.reversed = revString;
+    return returnObj;
+}
+
+//displayt string to a string
+function displayMessage(returnObj){
+    document.getElementById("alertHeader").innerHTML = returnObj.msg;
+    document.getElementById("msg").innerHTML= ` Your pharse reversed is: ${returnObj.reversed}`;
+   
+    document.getElementById("alertID").classList.remove("invisible");
+}
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The code is structured in one title:</p>
-                    <h5>Hello World</h5>
-                    <p>helloWorld is a Function that displays a message of "Hello World"</p>
+                    <div class="img-fluid">
+                        <img src="/img/pal.png" alt="app logo">
+                    </div>
+                    <h5>getValue&#40;&#41;</h5>
+                    <p>is a function that collects data from the user input. Then takes the user input and removes
+                        symbols, space on the sides and turns it all to lower case. Once that is done, the function
+                        continues to call <strong>reverseString&#40;&#41;</strong> aswell as
+                        <strong>displayString&#40;&#41;</strong></p>
+
+                    <h5>reverseString&#40;&#41;</h5>
+                    <p>is resposible for reversing the user input and putting it into an array, then returning it back
+                        to the <b>getValue&#40;&#41;</b> function.</p>
+
+                    <h5>displayString&#40;&#41;</h5>
+                    <p>is reponsible for outputting the reversed user input to the user. Before it displays, the
+                        function checks whether the user input is a <strong>PALINDROME</strong> or <strike>NOT</strike>.
+                        Different results will display depending on the condition.</p>
                 </div>
             </div>
         </div>
